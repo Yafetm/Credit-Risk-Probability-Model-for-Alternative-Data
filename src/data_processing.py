@@ -53,7 +53,7 @@ if __name__ == "__main__":
     print("Dataset columns:", df.columns.tolist())  # Debug column names
     pipeline = build_feature_pipeline()  # No need to pass df here
     X = pipeline.fit_transform(df)
-    print("Feature matrix shape:", X.shape)
+    print("Feature matrix shape:", X.shape)  # Add this back
     os.makedirs('../data/processed', exist_ok=True)
     pd.DataFrame(X).to_csv('../data/processed/features.csv', index=False)
     print("Processed features saved to ../data/processed/features.csv")

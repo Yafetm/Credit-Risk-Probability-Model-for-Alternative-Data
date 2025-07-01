@@ -14,3 +14,26 @@ Since the dataset lacks a direct "default" label, creating a proxy variable (e.g
 In a regulated financial context, simple models like Logistic Regression with WoE offer high interpretability, making it easier to explain predictions to regulators and stakeholders, aligning with Basel II’s transparency requirements. They are computationally efficient and robust to smaller datasets but may sacrifice predictive power for complex patterns. Conversely, complex models like Gradient Boosting Machines (GBM) often achieve higher predictive accuracy by capturing non-linear relationships but are less interpretable, posing challenges for regulatory audits and explainability. In a regulated environment, the trade-off favors simpler models to ensure compliance and trust, unless the complex model’s performance gains are substantial and can be justified with robust documentation and validation.
 
 ## Project Structure
+credit-risk-model/
+├── .github/workflows/ci.yml   # For CI/CD
+├── data/
+│   ├── raw/                   # Raw data
+│   └── processed/             # Processed data
+├── notebooks/
+│   └── 1.0-eda.ipynb         # Exploratory analysis
+├── src/
+│   ├── init.py
+│   ├── data_processing.py    # Feature engineering
+│   ├── train.py              # Model training
+│   ├── predict.py            # Inference
+│   └── api/
+│       ├── main.py           # FastAPI application
+│       └── pydantic_models.py # Pydantic models
+├── tests/
+│   └── test_data_processing.py # Unit tests
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+├── .gitignore
+└── README.md
+
