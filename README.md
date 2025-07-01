@@ -36,4 +36,50 @@ credit-risk-model/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+# Kifiya AIM Week 5 Challenge
 
+This repository contains the solution to the Kifiya AIM Week 5 challenge, focusing on data ingestion, exploratory data analysis, feature engineering, model training, and deployment.
+
+## Task 1: Data Ingestion
+- Set up the Git repository and created `.gitignore` to exclude `data/` and other unnecessary files.
+- Ingested the dataset into `data/raw/transactions.csv`.
+- Committed initial setup files.
+
+## Task 2: Exploratory Data Analysis (EDA)
+- Performed EDA in `notebooks/eda.ipynb`, analyzing `transactions.csv` for insights.
+- Updated from initial `1.0-eda.ipynb` and committed the final version.
+
+## Task 3: Feature Engineering
+- Implemented a pipeline in `src/data_processing.py` to aggregate RFM (Recency, Frequency, Monetary) features.
+- Output saved to `data/processed/features.csv` with shape (3742, 4).
+- Committed the script and output file.
+
+## Task 4: Model Training
+- Trained a RandomForestClassifier using RFM features in `src/train.py`.
+- Model saved to `models/rf_model.pkl`.
+- Committed the script and model file.
+
+## Task 5: Model Evaluation and Deployment
+- Evaluated model performance in `notebooks/2.0-model_evaluation.ipynb` with confusion matrix and classification report.
+- Deployed API in `src/api/main.py` for real-time predictions, accessible at `http://127.0.0.1:8000/predict`.
+- Tested successfully with `curl -X POST "http://127.0.0.1:8000/predict" -H "Content-Type: application/json" -d "{\"Recency\": 10, \"Frequency\": 5, \"Monetary\": 5000}"` returning `{"credit_risk_probability": 0}`.
+- Committed the notebook and API file.
+
+## Dependencies
+- Python 3.10
+- Required packages: `pandas`, `scikit-learn`, `joblib`, `fastapi`, `uvicorn`
+- Install via: `pip install pandas scikit-learn joblib fastapi uvicorn`
+
+## How to Run
+1. Clone the repository: `git clone <repository-url>`
+2. Navigate to the workspace: `cd C:\Users\hp\Desktop\Kifiya AIM\week 5\Technical Content\workspace`
+3. Install dependencies: `pip install -r requirements.txt` (create this file if not present with the listed packages)
+4. Run data processing: `python src/data_processing.py`
+5. Train the model: `python src/train.py`
+6. Evaluate the model: `jupyter notebook notebooks/2.0-model_evaluation.ipynb`
+7. Start the API: `uvicorn src.api.main:app --reload`
+8. Test the API: `curl -X POST "http://127.0.0.1:8000/predict" -H "Content-Type: application/json" -d "{\"Recency\": 10, \"Frequency\": 5, \"Monetary\": 5000}"`
+
+## Notes
+- The dataset is imbalanced, with only 16 fraud cases out of 3742, affecting minority class performance.
+- A scikit-learn version mismatch (1.7.0 vs. 1.5.1) was noted but did not impact results significantly.
